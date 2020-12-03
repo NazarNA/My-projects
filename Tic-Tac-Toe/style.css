@@ -1,0 +1,81 @@
+body, html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.border-item{
+    border: gray solid 1px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: .3s;
+    font-weight: 700;
+}
+
+.wrapper{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.column{
+    display: flex;
+}
+
+.border-item:hover{
+    background-color: lightblue;
+}
+
+#counter{
+    border: solid 2px #f44336;
+    height: 20px;
+    width: 75px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#counter p{
+    font-weight: 700;
+    text-align: center;
+}
+
+#reloader{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.button {
+    width: 80px;
+    height: 35px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+.button3 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f44336;
+}
+  
+.button3:hover {
+    background-color: #f44336;
+    color: white;
+}

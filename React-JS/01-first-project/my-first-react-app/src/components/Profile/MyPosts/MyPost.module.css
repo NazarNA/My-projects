@@ -1,0 +1,50 @@
+  .posts {
+    width: 99%;
+    position: relative;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 20px;
+    color: rgb(48, 47, 47);
+  }
+
+  .new_post_area {
+    background-color:rgba(171, 183, 183, 1);
+    color: white;
+    font-size: 24px;
+    margin: 10px;
+    width: 99%;
+    height: 90px;
+  }
+
+  .button_add {
+    padding: 11px;
+    border-radius: 5%;
+    background-color: #005682;
+    font-size: 20px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition-duration: 0.3s;
+  }
+
+  .button_wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+  }
+
+  .button_add:hover{
+    background-color: rgba(171, 183, 183, 1);
+    color: #005682;
+  }
+
+  .new_post_area::placeholder{
+    color: white;
+  }

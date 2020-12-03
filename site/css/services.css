@@ -1,0 +1,20 @@
+/* Navigation */
+.nav-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: grey solid 1px;
+    padding-bottom: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.nav-item a{
+    font-size: 28px;
+    text-decoration: none;
+    color: #455A64;
+}
+.nav-item a:hover{
+    color: #263238;
+    text-decoration: underline;
+    transition-duration: .2s;
+}

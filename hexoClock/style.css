@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+}
+
+.wrapper{
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    color: white;
+}
+
+#clock{
+    font-size: 60px;
+    margin-bottom: -10px;
+    font-weight: 300;
+}
+
+

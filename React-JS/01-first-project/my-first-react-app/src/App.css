@@ -1,0 +1,25 @@
+*{
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+}
+
+body{
+  background-color: #dff;
+}
+
+.app-wrapper{
+  width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+.content-wrapper{
+  display: flex;
+}
+
+.side-bar{
+  display: flex;
+  flex-direction: column;
+}

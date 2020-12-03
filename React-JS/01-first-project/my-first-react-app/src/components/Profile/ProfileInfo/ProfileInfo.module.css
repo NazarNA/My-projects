@@ -1,0 +1,45 @@
+.profile_content{
+    width: 100%;
+    padding-left: 10px;
+  }
+  
+  .profile_img{
+    width: 1000px;
+    height: 200px;
+    margin-bottom: 20px;
+    margin-left: -20px;
+  }
+  
+  .info{
+    display: flex;
+    align-items: center;
+  }
+
+  .info img{
+    margin-left: -20px;
+    margin-top: -15px;
+  }
+  
+  .title_about{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(48, 47, 47);
+    font-size: 40px;
+    font-weight: bold;
+  }
+  
+  .info_about{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    align-items: center;
+    justify-content: flex-start;
+    color: rgb(48, 47, 47);
+    font-weight: 700;
+  }
+
+  .info img{
+    
+  }

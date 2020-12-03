@@ -1,0 +1,86 @@
+body, html{
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-family: roboto sans-serif;
+}
+
+button{
+	text-decoration: none;
+	border: none;
+	background-color: inherit;
+	visibility: hidden;
+}
+
+
+.wrapper1{
+	margin: 0 auto;
+	width: 1200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px; 
+}
+
+.wrapper2{
+	margin: 0 auto;
+	width: 1200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px; 
+}
+
+.slider{
+	display: flex;
+	justify-content: center;
+	width: 500px;
+	overflow: hidden;
+	height: 300px;
+}
+
+.slider-item{
+	color: white;
+	font-size: 52px;
+	text-align: center;
+	width: 100%;
+}
+
+.btn-prev{
+	width: 30px;
+	height: 50px;
+	background-image: url(1.svg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center center;
+	cursor: pointer;
+}
+
+.btn-next{
+	width: 30px;
+	height: 50px;
+	background-image: url(2.svg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center center;
+	cursor: pointer;
+}
+
+.slider-img{
+	height: 100%;
+	width: 50%;
+}
+
+.countNum{
+	color: black;
+	font-size: 50px;
+	text-align: center;
+}
+
+#label-next, #label-prev{
+	cursor: pointer;
+}

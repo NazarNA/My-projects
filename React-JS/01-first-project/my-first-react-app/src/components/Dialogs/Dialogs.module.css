@@ -1,0 +1,53 @@
+.dialogs{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  color:  #005682;
+}
+
+.dialogsItem{
+  margin-left: 5%;
+  border-right: blue 1px solid;
+  width: 22%;
+}
+
+.dialog{
+  padding: 10px;
+  color:  #005682;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dialogs .dialogsItem .dialog a{
+  color: #005682;
+} 
+
+.dialogs .dialogsItem .dialog a.activeDialog{
+  color: goldenrod;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.messages{
+  width: 72%;
+  display: flex;
+  flex-direction: column;
+}
+
+.message{
+  padding: 10px;
+  border: rgba(23, 42, 74, 1) 2px solid;
+  margin: 5px;
+  border-radius: 10px;
+  width: 50%;
+  background-color: rgba(96, 136, 205, 1);
+  color: white;
+}
+
+._messageAvatar{
+  display: flex;
+
+}

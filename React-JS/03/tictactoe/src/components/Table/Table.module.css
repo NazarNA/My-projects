@@ -1,7 +1,6 @@
 .tabbleWrapper{
     width: 300px;
     height: 300px;
-    border: sienna solid 2px;
     display: flex;
     flex-wrap: wrap;
 }

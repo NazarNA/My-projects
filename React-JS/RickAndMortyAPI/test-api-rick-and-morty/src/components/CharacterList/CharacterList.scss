@@ -1,0 +1,18 @@
+.char-list{
+    margin-left: -50px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #1D3232;
+
+    &__filter{
+        width: 96%;
+        display: flex;
+        justify-content: center;
+        background-color: #2F4F4F;
+        border-radius: 5px;
+    }
+}

@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import style from './Cell.module.css'
+import React from 'react';
+import style from './Cell.module.css';
 
-const Cell = () => {
-
-   const [value, setValue] = useState(null)
-
+const Cell = ({ cell, id, onClick }) => {
     return (
-        <div onClick={()=>{setValue('X'); if(value === 'X'){setValue('O')}}} className={style.cell}>
-            {value}
+        <div onClick={()=> onClick(id)} className={style.cell}>
+            {cell}
         </div>
     );
 }

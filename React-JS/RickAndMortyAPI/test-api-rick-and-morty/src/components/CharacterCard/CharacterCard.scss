@@ -1,0 +1,26 @@
+.character-card{
+    width: 48%;
+    height: 200px;
+    margin: 5px 3px;
+    display: flex;
+    background-color: #2F4F4F;
+    border-radius: 5px;
+    overflow: hidden;
+    transition-duration: .4s;
+    cursor: pointer;
+
+    &__img{
+        width: 40%;
+    }
+
+    &__content{
+        color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    &:hover{
+        box-shadow: 0px 0px 7px white;
+    }
+}

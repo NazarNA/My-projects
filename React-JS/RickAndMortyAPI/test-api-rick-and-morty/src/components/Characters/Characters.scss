@@ -1,0 +1,43 @@
+.wrapper{
+    max-width: 1100px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #1D3232;
+    ul{
+        display: flex;
+        justify-content: space-between;
+        width: 30%;
+        outline: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+    
+    .pagination{
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .active{
+        display: flex;
+        justify-content: center;
+        background-color: #2F4F4F;
+        width: 20px;
+        border-radius: 50%;
+        outline: none;
+        border: none;
+    }
+}
+
+.progres{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

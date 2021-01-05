@@ -12,8 +12,6 @@ function Characters() {
 
   const [state, setState] = useState();
   const [rickAndMortyChars, setRickAndMortyChars] = useState([]) ;
-  // const [nextPageUrl, setNextPageUrl] = useState('');
-  // const [prevPageUrl, setPrevPageUrl] = useState('');
   const [pages, setPages] = useState();
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState();
@@ -31,8 +29,6 @@ function Characters() {
       setLoading(false)
       setState(data.results);
       setRickAndMortyChars(data.results);
-      // setNextPageUrl(data.info.next ? data.info.next : '')
-      // setPrevPageUrl(data.info.prev ? data.info.prev : currentPageUrl)
       setPages(data.info.pages)
       // debugger
     })
@@ -80,24 +76,6 @@ function Characters() {
   }
 
   const globalCharFilter = (e) => {
-    // const copy = state
-
-    // setGENDER([...copy].filter(char => (
-    //   char.gender === e.target.innerHTML
-    // ))) 
-    
-    // setSTATUS([...copy].filter(char => (
-    //   char.status === e.target.innerHTML
-    // )))
-
-    // setSPECIES([...copy].filter(char => (
-    //   char.species === e.target.innerHTML
-    // )))
-
-
-    // setRickAndMortyChars([...copy].filter(char => {
-    //   return char.status === STATUS.status && char.species === SPECIES.species && char.gender === GENDER.gender
-    // }))
   }
 
   const handlePageClick = (e) => {

@@ -8,7 +8,7 @@ import MyWatchList from './components/MyWatchList/MyWatchList';
 
 import './App.scss';
 
-function App() {
+const App = () => {
   
   return (
       <BrowserRouter>

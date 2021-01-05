@@ -12,8 +12,8 @@
         width: 100%;
         border: 2px solid #2F4F4F;
         border-collapse: collapse;
-        margin: 0 0 5px 0;
-        th,td{
+        margin: 5px 0;
+        th,td,tr{
             width: 33%;
             border: 2px solid #2F4F4F;
             text-align: left;
@@ -31,6 +31,7 @@
         margin: 5px 0;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 30%;
         outline: none;
         border: none;
@@ -39,6 +40,9 @@
     }
     
     .pagination{
+        display: flex;
+        align-items: center;
+        justify-items: center;
         border: none;
         outline: none;
         cursor: pointer;
@@ -47,11 +51,11 @@
     .active{
         display: flex;
         justify-content: center;
-        background-color: #2F4F4F;
-        width: 20px;
+        background-color: #1D3232;
+        border: solid 2px #2F4F4F;
+        width: 23px;
         border-radius: 50%;
         outline: none;
-        border: none;
     }
 }
 

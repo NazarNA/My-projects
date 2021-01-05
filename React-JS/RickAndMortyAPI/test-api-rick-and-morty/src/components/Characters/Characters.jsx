@@ -23,14 +23,24 @@ function Characters() {
     
   useEffect(()=>{
     setLoading(true)
-    fetch(currentPageUrl)
+    fetch(staticUrl)
     .then(response => response.json())
     .then(data => {
       setLoading(false)
       setState(data.results);
       setRickAndMortyChars(data.results);
       setPages(data.info.pages)
-      // debugger
+    })
+  },[])
+
+  useEffect(()=>{
+    setLoading(true)
+    fetch(currentPageUrl)
+    .then(response => response.json())
+    .then(data => {
+      setLoading(false)
+      setState(data.results);
+      setRickAndMortyChars(data.results);
     })
   },[currentPageUrl])
 
@@ -79,7 +89,6 @@ function Characters() {
   }
 
   const handlePageClick = (e) => {
-    console.log(e);
     const selectedPage = e.selected
     setPage(selectedPage)
   }

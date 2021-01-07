@@ -1,15 +1,19 @@
-import React from 'react';
+import React,{ useRef } from 'react';
 
 import './NameFilter.scss'
 
-const NameFilter = ({ episodes, findByName, staticState }) => {
+const NameFilter = ({ findByName, resetHandler }) => {
+    let searchValue = useRef()
+    
     return (
         <div className='filter-input'>
             <form>
                 <input 
-                    placeholder='Enter name...' 
-                    onChange={e => findByName(e)} 
+                    placeholder='Enter name...'
+                    ref={searchValue}
                 />
+                <button onClick={() => findByName(searchValue)}>search</button>
+                <button onClick={resetHandler}>reset</button>
             </form>
         </div>
     );

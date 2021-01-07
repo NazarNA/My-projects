@@ -10,8 +10,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
         height: 20px;
+        
+        button{
+            cursor: pointer;
+            background-color: #2F4F4F;
+            border: solid 2px #1D3232;
+            border-radius: 4px;
+            outline: none;
+            margin: 1px 0;
+            color: white;
+            padding: 7px;
+            transition-duration: .3s;
+            &:hover{
+                background-color: #3f6b6b;
+            }
+        }
         
         input{
             height: 100%;

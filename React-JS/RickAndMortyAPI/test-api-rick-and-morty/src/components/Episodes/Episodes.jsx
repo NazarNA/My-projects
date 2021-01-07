@@ -15,7 +15,8 @@ const Episodes = () => {
     const [page, setPage] = useState();
     const [pages, setPages] = useState();
     const [currentPageUrl, setCurrentPageUrl] = useState('https://rickandmortyapi.com/api/episode')
- 
+    const [search, setSearch] = useState('')
+
 
     useEffect(() => {
         setLoading(true)
@@ -29,6 +30,12 @@ const Episodes = () => {
             })
     }, []);
 
+
+    useEffect(() => {
+        setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&name=${search}`)
+    },[search, page])
+
+
     useEffect(() => {
         setLoading(true)
         fetch(currentPageUrl)
@@ -36,28 +43,25 @@ const Episodes = () => {
         .then(data => {
             setLoading(false)
             setEpisodes(data.results)
+            setPages(data.info.pages)
         })
     }, [currentPageUrl]);
 
-    useEffect(() => {
-        setCurrentPageUrl(`${staticUrl}/?page=${page + 1}`)
-      },[page])
-
     const handlePageClick = (e) => {
-        const selectedPage = e.selected
-        setPage(selectedPage)
-      }
+        setPage(e.selected)
+    }
     
-      const findByName = (e) => {
-        if(!e.target.value){
-            setEpisodes(staticState)
-        } else {
-            let filteredByName = episodes.filter(el => el.name.toLowerCase().includes(e.target.value.toLowerCase()))
-            setEpisodes(filteredByName)
-        }
+    const findByName = (data) => {
+        console.log('event');
+        setSearch(data.current.value)
+        // setPages((episodes / 20).toFixed())
+    //    filter(el => el.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    }
 
-
-      }
+    const resetHandler = () => {
+        setCurrentPageUrl(staticUrl)
+        setSearch('')
+    }
 
       if(loading){
         return (
@@ -65,12 +69,12 @@ const Episodes = () => {
         )
       }
 
+      console.log('rendered');
     return (
         <div className='episodes'>
             <NameFilter 
-                episodes={episodes} 
-                findByName={findByName} 
-                staticState={staticState}
+                findByName={findByName}
+                resetHandler={resetHandler} 
             />
             <table>
                     <thead>

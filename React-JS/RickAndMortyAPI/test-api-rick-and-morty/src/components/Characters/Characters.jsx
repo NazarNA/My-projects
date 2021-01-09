@@ -26,6 +26,7 @@ function Characters() {
     fetch(staticUrl)
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       setLoading(false)
       setState(data.results);
       setRickAndMortyChars(data.results);
@@ -48,6 +49,10 @@ function Characters() {
   useEffect(() => {
     setCurrentPageUrl(`${staticUrl}/?page=${page + 1}`)
   },[page])
+
+  // useEffect(() => {
+  //   setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&name=${search}`)
+  // },[search, page])
   
   const allBtnHandler = () => {
     const copy = state

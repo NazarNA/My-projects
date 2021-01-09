@@ -8,6 +8,7 @@
     overflow: hidden;
     transition-duration: .4s;
     cursor: pointer;
+    position: relative;
 
     &__img{
         width: 40%;
@@ -18,6 +19,18 @@
         display: flex;
         flex-direction: column;
         padding: 5px;
+    }
+
+    &__info{
+        color:white;
+        position: absolute;
+        font-size: 14px;
+        top: 80%;
+        left: 65%;
+    }
+
+    .focused{
+        display: block;
     }
 
     &:hover{

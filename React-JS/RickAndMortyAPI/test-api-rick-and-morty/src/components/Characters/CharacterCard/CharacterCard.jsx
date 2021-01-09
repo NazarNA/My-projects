@@ -13,6 +13,10 @@ const CharacterCard = ({ char }) => {
                 <div>Location: {char.location.name}</div>
                 {char.type ? <div>{char.type}</div> : null}
             </div>
+            <div className='character-card__info focused'>
+                <h3>created:</h3>
+                <div>{char.created}</div>
+            </div>
         </div>
     );
 }

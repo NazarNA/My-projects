@@ -12,7 +12,10 @@ const NameFilter = ({ findByName, resetHandler }) => {
                     placeholder='Enter name...'
                     ref={searchValue}
                 />
-                <button onClick={() => findByName(searchValue)}>search</button>
+                <button onClick={(e) => {
+                    e.preventDefault()
+                    findByName(searchValue)
+                }}>search</button>
                 <button onClick={resetHandler}>reset</button>
             </form>
         </div>

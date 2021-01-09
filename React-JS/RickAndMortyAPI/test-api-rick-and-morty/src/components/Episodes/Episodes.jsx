@@ -32,7 +32,7 @@ const Episodes = () => {
 
 
     useEffect(() => {
-        setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&name=${search}`)
+        setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&name=${search.toLocaleLowerCase()}`)
     },[search, page])
 
 
@@ -54,13 +54,13 @@ const Episodes = () => {
     const findByName = (data) => {
         console.log('event');
         setSearch(data.current.value)
+        data.current.value = ''
         // setPages((episodes / 20).toFixed())
     //    filter(el => el.name.toLowerCase().includes(e.target.value.toLowerCase()))
     }
 
     const resetHandler = () => {
         setCurrentPageUrl(staticUrl)
-        setSearch('')
     }
 
       if(loading){

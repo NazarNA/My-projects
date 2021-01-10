@@ -45,32 +45,15 @@ const Locations = () => {
         setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&name=${searchByName || ''}&type=${searchByType || ''}&dimension=${searchByDimension || ''}`)
     },[page, searchByName, searchByType, searchByDimension])
 
-    console.log('searchByType :', searchByType);
-    console.log('searchByName :', searchByName);
-    console.log('searchByDimension :', searchByDimension);
+    const searchNameHandler = (e) => setSeacrhByName((e.current.value).toLowerCase())
 
-    const searchNameHandler = (e) => {
-        setSeacrhByName((e.current.value).toLowerCase())
-        console.log(searchByName);
-    }
+    const searchTypeHandler = (e) => setSearchByType((e.current.value).toLowerCase())
+  
+    const searchDimensionHandler = (e) => setSearchByDimension((e.current.value).toLowerCase())
 
-    const searchTypeHandler = (e) => {
-        setSearchByType((e.current.value).toLowerCase())
-        console.log(searchByType);
-    }
+    const resetHandler = () => setCurrentPageUrl(staticUrl)
 
-    const searchDimensionHandler = (e) => {
-        setSearchByDimension((e.current.value).toLowerCase())
-        console.log(searchByDimension);
-    }
-
-    const resetHandler = () => {
-        setCurrentPageUrl(staticUrl)
-    }
-
-    const handlePageClick = (e) => {
-        setPage(e.selected)
-    }
+    const handlePageClick = (e) => setPage(e.selected)
 
     if(loading){
         return (

@@ -2,28 +2,34 @@ import React from 'react';
 
 import './FilterPanel.scss'
 
-const FilterPanel = ({ filterSpecies, filterAlive, filterByGender, allBtnHandler, globalCharFilter }) => {
+const FilterPanel = ({ speciesHandler, statusHandler, genderHandler, SPECIES, STATUS, GENDER }) => {
 
     return (
-        <div className="filter-panel" onClick={e => globalCharFilter(e)}>
+        <div className="filter-panel">
             <div>
-                <button onClick={allBtnHandler} className='all'>All</button>
+                 Species:
+             <select value={SPECIES} onChange={(e)=> speciesHandler(e)}>
+                    <option value='' >All</option>
+                    <option value='human' >Human</option>
+                    <option value='alien' >Alien</option>
+                </select>
             </div>
-            <div onClick={(e) => filterSpecies(e)}>
-                Species:
-                     <button>Human</button>
-                     <button>Alien</button>
-            </div>
-            <div onClick={(e) => filterAlive(e)}>
+            <div>
                 Status:
-                    <button>Alive</button>
-                    <button>Dead</button>
-                    <button>unknown</button>
+             <select value={STATUS} onChange={e => statusHandler(e)}>
+                    <option value=''>All</option>
+                    <option value='alive' >Alive</option>
+                    <option value='dead' >Dead</option>
+                    <option value='unknown' >unknown</option>
+                </select>
             </div>
-            <div onClick={(e) => filterByGender(e)}>
+            <div>
                 Gender:
-                    <button>Male</button>
-                    <button>Female</button>
+             <select value={GENDER} onChange={e => genderHandler(e)}>
+                    <option value='' >All</option>
+                    <option value='male' >Male</option>
+                    <option value='female' >Female</option>
+                </select>
             </div>
         </div>
     );

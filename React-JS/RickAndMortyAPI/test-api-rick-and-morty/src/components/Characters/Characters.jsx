@@ -17,9 +17,9 @@ function Characters() {
   const [page, setPage] = useState();
   const [currentPageUrl, setCurrentPageUrl] = useState(`https://rickandmortyapi.com/api/character`);
   
-  const [SPECIES, setSPECIES] = useState([]);
-  const [STATUS, setSTATUS] = useState([]);
-  const [GENDER, setGENDER] = useState([]);
+  const [SPECIES, setSPECIES] = useState('');
+  const [STATUS, setSTATUS] = useState('');
+  const [GENDER, setGENDER] = useState('');
     
   useEffect(()=>{
     setLoading(true)
@@ -40,80 +40,43 @@ function Characters() {
     .then(response => response.json())
     .then(data => {
       setLoading(false)
-      setState(data.results);
       setRickAndMortyChars(data.results);
+      setPages(data.info.pages)
     })
   },[currentPageUrl])
 
-  
   useEffect(() => {
-    setCurrentPageUrl(`${staticUrl}/?page=${page + 1}`)
-  },[page])
+    setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&species=${SPECIES || ''}&status=${STATUS || ''}&gender=${GENDER || ''}`)
+},[page, SPECIES, STATUS, GENDER])
 
-  // useEffect(() => {
-  //   setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&name=${search}`)
-  // },[search, page])
-  
-  const allBtnHandler = () => {
-    const copy = state
-    setRickAndMortyChars(copy)
-  }
+  const speciesHandler = (e) => setSPECIES(e.target.value)
 
-  const filterSpecies = (e) => {
-    const copy = state
-    setSPECIES([...copy].filter(char => (
-      char.species === e.target.innerHTML
-    )))
-    setRickAndMortyChars([...copy].filter(char => (
-      char.species === e.target.innerHTML
-    )))    
-  }
+  const statusHandler = (e) => setSTATUS(e.target.value)
 
-  const filterAlive = (e) => {
-    const copy = state
-    setSTATUS([...copy].filter(char => (
-      char.status === e.target.innerHTML
-    )))
+  const genderHandler = (e) => setGENDER(e.target.value)
 
-    setRickAndMortyChars([...copy].filter(char => (
-      char.status === e.target.innerHTML
-    ))) 
-  }
+  const handlePageClick = (e) => setPage(e.selected)
 
-  const filterByGender = (e) => {
-    const copy = state
-    setGENDER([...copy].filter(char => (
-      char.gender === e.target.innerHTML
-    )))
-    setRickAndMortyChars([...copy].filter(char => (
-      char.gender === e.target.innerHTML
-    )))  
-  }
+  console.log(window.location.pathname); //yields: "/js" (where snippets run)
+  console.log(window.location.href); 
 
-  const globalCharFilter = (e) => {
-  }
-
-  const handlePageClick = (e) => {
-    const selectedPage = e.selected
-    setPage(selectedPage)
-  }
 
   if(loading){
     return (
-      <div className='progres'><CircularProgress /></div>
+      <div className='progress'><CircularProgress /></div>
     )
   }
 
   return (
     <div className='wrapper'>
       <div className='char-list__filter'>
-        <FilterPanel 
-          characters={rickAndMortyChars}  
-          filterSpecies={filterSpecies} 
-          filterAlive={filterAlive} 
-          filterByGender={filterByGender} 
-          allBtnHandler={allBtnHandler}
-          globalCharFilter={globalCharFilter}
+        <FilterPanel
+          SPECIES={SPECIES}
+          STATUS={STATUS}
+          GENDER={GENDER}
+          genderHandler={genderHandler}        
+          statusHandler={statusHandler}
+          speciesHandler={speciesHandler} 
         />
       </div>
       <CharacterList rickAndMortyChars={rickAndMortyChars}/>

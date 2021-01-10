@@ -30,11 +30,9 @@ const Episodes = () => {
             })
     }, []);
 
-
     useEffect(() => {
         setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&name=${search.toLocaleLowerCase()}`)
     },[search, page])
-
 
     useEffect(() => {
         setLoading(true)
@@ -47,21 +45,14 @@ const Episodes = () => {
         })
     }, [currentPageUrl]);
 
-    const handlePageClick = (e) => {
-        setPage(e.selected)
-    }
+    const handlePageClick = (e) => setPage(e.selected)
     
     const findByName = (data) => {
-        console.log('event');
         setSearch(data.current.value)
         data.current.value = ''
-        // setPages((episodes / 20).toFixed())
-    //    filter(el => el.name.toLowerCase().includes(e.target.value.toLowerCase()))
     }
 
-    const resetHandler = () => {
-        setCurrentPageUrl(staticUrl)
-    }
+    const resetHandler = () => setCurrentPageUrl(staticUrl)
 
       if(loading){
         return (

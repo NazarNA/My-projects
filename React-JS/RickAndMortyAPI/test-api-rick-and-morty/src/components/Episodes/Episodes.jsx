@@ -8,7 +8,6 @@ import './Episodes.scss'
 
 const Episodes = () => {
     const staticUrl = 'https://rickandmortyapi.com/api/episode';
-    const [staticState, setStaticState] = useState('')
 
     const [episodes, setEpisodes] = useState([])
     const [loading, setLoading] = useState(true);
@@ -24,7 +23,6 @@ const Episodes = () => {
             .then(res => res.json())
             .then(data => {
                 setLoading(false)
-                setStaticState(data.results)
                 setEpisodes(data.results)
                 setPages(data.info.pages)
             })
@@ -43,27 +41,28 @@ const Episodes = () => {
             setEpisodes(data.results)
             setPages(data.info.pages)
         })
+        .catch(err => {
+            alert(`Помилка, за пошуковим запитом: '${search}' нічого не знайдено!`)
+            setCurrentPageUrl(staticUrl);
+        })
     }, [currentPageUrl]);
 
-    const handlePageClick = (e) => setPage(e.selected)
+    const handlePageClick = e => setPage(e.selected)
     
-    const findByName = (data) => {
-        setSearch(data.current.value)
-        data.current.value = ''
-    }
+    const findByName = data => setSearch(data.current.value)
 
     const resetHandler = () => setCurrentPageUrl(staticUrl)
 
-      if(loading){
+    if(loading){
         return (
-          <div className='progres'><CircularProgress /></div>
+         <div className='progress'><CircularProgress /></div>
         )
-      }
+    }
 
-      console.log('rendered');
     return (
         <div className='episodes'>
-            <NameFilter 
+            <NameFilter
+                search={search}
                 findByName={findByName}
                 resetHandler={resetHandler} 
             />

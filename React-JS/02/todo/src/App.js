@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect} from 'react';
-import './App.css';
 import TodoList from './components/TodoList/TodoList';
 import { v4 as uuidv4 } from 'uuid';
+
+import './App.css';
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 
 function App(props) {
 
-  const [todos, setTodos] = useState(props.state.todos)
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)))
   const todoNameRef = useRef()
 
   useEffect(()=>{
@@ -42,13 +43,16 @@ function App(props) {
   return (
     <div className='wrapper'>
       <h2>ToDo</h2>
-      <div className='add'>
-        <input ref={todoNameRef} type='text'/>
-        <button  onClick={handlerAddTodo}>+</button>
-      </div>
+      <div className='listWrapper'>
+        <div className='add'>
+          <input ref={todoNameRef} type='text'/>
+          <button  onClick={handlerAddTodo}>+</button>
+        </div>
 
-      {todos.length ? <TodoList todos={todos} toggleTodo={toggleTodo} removeTodo={removeTodo}/> : <p>No Todo!</p>}
+          {todos.length ? <TodoList todos={todos} toggleTodo={toggleTodo} removeTodo={removeTodo}/> : <p>No Todo!</p>}
        
+      </div>
+      
     </div>
   );
 

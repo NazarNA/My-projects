@@ -24,7 +24,6 @@ const Locations = () => {
             .then(response => response.json())
             .then(data =>{
                 setLoading(false)
-                console.log(data)
                 setLocations(data.results)
                 setPages(data.info.pages)
             })

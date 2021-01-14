@@ -3,7 +3,7 @@ import React from 'react';
 import './CharacterCard.scss'
 
 const CharacterCard = ({ char }) => {
-    
+    console.log(char);
     return (
         <div className='character-card'>
             <img className='character-card__img' src={char.image} alt="character_img"/>

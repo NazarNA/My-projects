@@ -10,7 +10,6 @@ import './Characters.scss';
 function Characters() {
   const staticUrl = 'https://rickandmortyapi.com/api/character';
 
-  const [state, setState] = useState();
   const [rickAndMortyChars, setRickAndMortyChars] = useState([]) ;
   const [pages, setPages] = useState();
   const [loading, setLoading] = useState(true);
@@ -28,7 +27,6 @@ function Characters() {
     .then(data => {
       console.log(data);
       setLoading(false)
-      setState(data.results);
       setRickAndMortyChars(data.results);
       setPages(data.info.pages)
     })

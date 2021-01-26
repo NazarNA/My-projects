@@ -6,8 +6,13 @@ const TodoList = ({ todos, toggleTodo, removeTodo }) => {
     return (
         <>
             <ul className={style.list}>
-                {todos.map((todo) => {
-                    return <TodoItem todo={todo} key={todo.id} toggleTodo={toggleTodo} removeTodo={removeTodo} />
+                {todos.map((todo, idx) => {
+                    return <TodoItem
+                        todo={todo}
+                        key={idx}
+                        toggleTodo={toggleTodo}
+                        removeTodo={removeTodo}
+                    />
                 })}
                       
             </ul> 

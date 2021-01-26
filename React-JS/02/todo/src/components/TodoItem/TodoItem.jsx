@@ -10,24 +10,18 @@ const TodoItem = ({ todo, toggleTodo, removeTodo }) => {
     }
 
 
-    const handleTodoClick = ()=>{
-        toggleTodo(todo.id)
-    }
-
-
     return (
         <li className={style.item}>
             <span className={activeClass}>
                 <label>
                     <input 
-                    type="checkbox" 
-                    checked={todo.completed}
-                    onChange={handleTodoClick}
+                        type="checkbox" 
+                        checked={todo.completed}
+                        onChange={() => toggleTodo(todo.id)}
                     />
                     {todo.name} 
                 </label>
             </span>
-
             <button onClick={() => removeTodo(todo.id)}>&times;</button>
         </li>
     );

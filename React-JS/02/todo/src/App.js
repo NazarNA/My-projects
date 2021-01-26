@@ -1,61 +1,57 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useRef, useEffect } from 'react';
 import TodoList from './components/TodoList/TodoList';
-import { v4 as uuidv4 } from 'uuid';
+import { connect } from 'react-redux';
+import { addTodoAction, removeTodoAction, toggleTodoAction } from './Redux/actions';
 
 import './App.css';
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 
-function App(props) {
+function App({ todos, addTodoHandler, removeTodoHandler, toggleTodoHandler }) {
 
-  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)))
   const todoNameRef = useRef()
-
-  useEffect(()=>{
-    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
-    if(storedTodos) setTodos(storedTodos)
-  },[])
 
   useEffect(()=>{
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
   }, [todos])
 
-  const toggleTodo = (id) => {
-    const newTodos = [...todos]
-    const todo = newTodos.find(todo => todo.id === id)
-    todo.completed = !todo.completed
-    setTodos(newTodos)
-  }
+  const toggleTodo = id => toggleTodoHandler(id);
 
-  const removeTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id))
-  }
-
-  function handlerAddTodo(e) {
+  const removeTodo = id => removeTodoHandler(id);
+  
+  const addTodo = () => {
     const name = todoNameRef.current.value
     if(!name)return alert('Напишіть щось!')
-    setTodos((prevTodo) =>{
-      return [...prevTodo,{id: uuidv4(), name: name, completed: false}]
-    })
+
+    addTodoHandler(name)
     todoNameRef.current.value = null
   }
 
+  
   return (
     <div className='wrapper'>
       <h2>ToDo</h2>
       <div className='listWrapper'>
         <div className='add'>
           <input ref={todoNameRef} type='text'/>
-          <button  onClick={handlerAddTodo}>+</button>
+          <button onClick={addTodo}>+</button>
         </div>
 
           {todos.length ? <TodoList todos={todos} toggleTodo={toggleTodo} removeTodo={removeTodo}/> : <p>No Todo!</p>}
        
       </div>
-      
     </div>
   );
 
 }
 
-export default App;
+export default connect(
+  state => ({ todos: state }),
+  dispatch => ({
+    addTodoHandler: title => dispatch(addTodoAction(title)),
+
+    removeTodoHandler: id => dispatch(removeTodoAction(id)),
+
+    toggleTodoHandler: id => dispatch(toggleTodoAction(id))
+  })
+)(App);

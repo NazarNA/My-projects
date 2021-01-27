@@ -3,64 +3,48 @@ import LocationsTable from "./LocationsTable/LocationsTable";
 import ReactPaginate from 'react-paginate';
 import { CircularProgress } from '@material-ui/core';
 import FilterLocations from './FilterLocations/FilterLocations';
+import {useDispatch, useSelector} from 'react-redux';
+import { fetchLocations, setDimension, setName, setType, changePage } from '../../actions/locationsActions';
 
 import './Locations.scss'
 
 const Locations = () => {
-    const staticUrl = 'https://rickandmortyapi.com/api/location'
+    //redux hooks
+    const dispatch = useDispatch()
+    const {locations, page, pages, loading, name, type, dimension} = useSelector(state => ({
+        locations: state.locations.locations,
+        page: state.locations.page,
+        pages: state.locations.pages,
+        error: state.locations.error,
+        loading: state.locations.loading,
+        name: state.locations.name,
+        type: state.locations.type,
+        dimension: state.locations.dimension 
+    }))
 
-    const [currentPageUrl, setCurrentPageUrl] = useState('https://rickandmortyapi.com/api/location')
-    const [locations, setLocations] = useState([])
-    const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState();
-    const [pages, setPages] = useState();
-    const [searchByName, setSeacrhByName] = useState('')
-    const [searchByType, setSearchByType] = useState('')
-    const [searchByDimension, setSearchByDimension] = useState('')
+    //react hooks
+    useEffect(() => dispatch(fetchLocations()),[]);
 
-    useEffect(()=>{
-        setLoading(true)
-        fetch(currentPageUrl)
-            .then(response => response.json())
-            .then(data =>{
-                setLoading(false)
-                setLocations(data.results)
-                setPages(data.info.pages)
-            })
-    },[])
+    useEffect(() => dispatch(fetchLocations(page, name, type, dimension)),[page, name, type, dimension]);
+   
+    const searchNameHandler = e => dispatch(setName(e.current.value))
 
-    useEffect(() => {
-        setLoading(true)
-        fetch(currentPageUrl)
-        .then(res => res.json())
-        .then(data => {
-            setTimeout(() => {
-                setLoading(false)
-                setLocations(data.results)
-                setPages(data.info.pages)  
-            }, 500);
-        })
-    }, [currentPageUrl]);
-
-    useEffect(() => {
-        setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&name=${searchByName || ''}&type=${searchByType || ''}&dimension=${searchByDimension || ''}`)
-    },[page, searchByName, searchByType, searchByDimension])
-
-    const searchNameHandler = (e) => setSeacrhByName((e.current.value).toLowerCase())
-
-    const searchTypeHandler = (e) => setSearchByType((e.current.value).toLowerCase())
+    const searchTypeHandler = e => dispatch(setType(e.current.value))
   
-    const searchDimensionHandler = (e) => setSearchByDimension((e.current.value).toLowerCase())
+    const searchDimensionHandler = e => dispatch(setDimension(e.current.value))
 
-    const resetHandler = () => setCurrentPageUrl(staticUrl)
-
-    const handlePageClick = (e) => setPage(e.selected)
-
-    if(loading){
-        return (
-          <div className='progres'><CircularProgress /></div>
-        )
+    const resetHandler = () => {
+        dispatch(setName(''))
+        dispatch(setType(''))
+        dispatch(setDimension(''))
     }
+
+    //pagination handler
+    const handlePageClick = e => dispatch(changePage(e.selected));
+
+    //conditional rendering
+    if(loading) return <div className='progress'><CircularProgress /></div>
+
 
     return (
         <div className='locations'>
@@ -90,17 +74,17 @@ const Locations = () => {
                     </tbody>
                 </table>
                 <ReactPaginate 
-                previousLabel={"<"}
-                nextLabel={">"}
-                breakLabel={"..."}
-                pageCount={pages}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={handlePageClick}
-                activeClassName={"active"}
-                pageLinkClassName={"pagination"}
-                initialPage={page}
-            />
+                    previousLabel={"<"}
+                    nextLabel={">"}
+                    breakLabel={"..."}
+                    pageCount={pages}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    activeClassName={"active"}
+                    pageLinkClassName={"pagination"}
+                    initialPage={page}
+                />
         </div>
     );
 }

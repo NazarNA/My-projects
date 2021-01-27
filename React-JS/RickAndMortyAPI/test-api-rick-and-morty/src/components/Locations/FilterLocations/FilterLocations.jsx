@@ -28,7 +28,10 @@ const FilterLocations = ({ searchNameHandler, searchTypeHandler, searchDimension
                     searchTypeHandler(typeVal)
                     searchDimensionHandler(dimVal)
                 }}>search</button>
-                <button onClick={resetHandler}>reset</button>
+                <button onClick={e => {
+                    e.preventDefault();
+                    resetHandler()
+                }}>reset</button>
             </form>
         </div>
     );

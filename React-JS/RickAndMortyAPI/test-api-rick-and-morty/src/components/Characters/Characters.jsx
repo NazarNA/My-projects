@@ -12,7 +12,7 @@ function Characters() {
   // redux hooks
   const dispatch = useDispatch();
 
-  const {characters, page, pages, loading, species, status, gender, error} = useSelector(
+  const {characters, page, pages, loading, species, status, gender} = useSelector(
     state => ({
       characters: state.characters.characters,
       pages: state.characters.pages,
@@ -21,7 +21,6 @@ function Characters() {
       species: state.characters.species,
       status: state.characters.status,
       gender: state.characters.gender,
-      error: state.characters.error
     })
   );
   

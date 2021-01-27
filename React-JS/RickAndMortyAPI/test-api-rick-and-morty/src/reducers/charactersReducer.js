@@ -1,4 +1,5 @@
-import { CHANGE_PAGE, 
+import { 
+    CHANGE_PAGE, 
     FETCH_CHARACTERS_BEGIN, 
     FETCH_CHARACTERS_FAILURE, 
     FETCH_CHARACTERS_SUCCESS,
@@ -9,8 +10,8 @@ import { CHANGE_PAGE,
 
 const initialState = {
     characters: [],
-    pages: 0,
     loading: false,
+    pages: 0,
     page: 0,
     species: '',
     status: '',
@@ -26,7 +27,6 @@ export const charactersReducer = (state = initialState, action) => {
                 loading: true
             }
         case FETCH_CHARACTERS_SUCCESS:
-            console.log('from charactersReducer - ',action.payload.results)
             return {
                 ...state,
                 loading: false,
@@ -41,6 +41,7 @@ export const charactersReducer = (state = initialState, action) => {
         case CHANGE_PAGE:
             return {
                 ...state,
+                loading: false,
                 page: action.payload
             }
         case SET_SPECIES:

@@ -24,15 +24,12 @@ const Locations = () => {
 
     //react hooks
     useEffect(() => dispatch(fetchLocations()),[]);
-
     useEffect(() => dispatch(fetchLocations(page, name, type, dimension)),[page, name, type, dimension]);
    
+    //search value handler
     const searchNameHandler = e => dispatch(setName(e.current.value))
-
     const searchTypeHandler = e => dispatch(setType(e.current.value))
-  
     const searchDimensionHandler = e => dispatch(setDimension(e.current.value))
-
     const resetHandler = () => {
         dispatch(setName(''))
         dispatch(setType(''))
@@ -44,7 +41,6 @@ const Locations = () => {
 
     //conditional rendering
     if(loading) return <div className='progress'><CircularProgress /></div>
-
 
     return (
         <div className='locations'>

@@ -37,9 +37,11 @@ const Episodes = () => {
         fetch(currentPageUrl)
         .then(res => res.json())
         .then(data => {
-            setLoading(false)
-            setEpisodes(data.results)
-            setPages(data.info.pages)
+            setTimeout(()=>{
+                setLoading(false)
+                setEpisodes(data.results)
+                setPages(data.info.pages)
+        },500)
         })
         .catch(err => {
             alert(`Помилка, за пошуковим запитом: '${search}' нічого не знайдено!`)

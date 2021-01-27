@@ -34,9 +34,11 @@ const Locations = () => {
         fetch(currentPageUrl)
         .then(res => res.json())
         .then(data => {
-            setLoading(false)
-            setLocations(data.results)
-            setPages(data.info.pages)
+            setTimeout(() => {
+                setLoading(false)
+                setLocations(data.results)
+                setPages(data.info.pages)  
+            }, 500);
         })
     }, [currentPageUrl]);
 

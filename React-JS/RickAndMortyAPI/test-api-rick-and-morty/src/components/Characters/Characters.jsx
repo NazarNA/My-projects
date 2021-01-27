@@ -3,81 +3,61 @@ import CharacterList from './CharacterList/CharacterList';
 import FilterPanel from './FilterPanel/FilterPanel';
 import ReactPaginate from 'react-paginate';
 import { CircularProgress } from '@material-ui/core';
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCharacters, changePage, setSpecies, setStatus, setGender } from '../../actions/charactersActions';
 
 import './Characters.scss';
 
 function Characters() {
-  const staticUrl = 'https://rickandmortyapi.com/api/character';
+  // redux hooks
+  const dispatch = useDispatch();
 
-  const [rickAndMortyChars, setRickAndMortyChars] = useState([]) ;
-  const [pages, setPages] = useState();
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState();
-  const [currentPageUrl, setCurrentPageUrl] = useState(`https://rickandmortyapi.com/api/character`);
+  const {characters, page, pages, loading, species, status, gender, error} = useSelector(
+    state => ({
+      characters: state.characters.characters,
+      pages: state.characters.pages,
+      loading: state.characters.loading,
+      page: state.characters.page,
+      species: state.characters.species,
+      status: state.characters.status,
+      gender: state.characters.gender,
+      error: state.characters.error
+    })
+  );
   
-  const [SPECIES, setSPECIES] = useState('');
-  const [STATUS, setSTATUS] = useState('');
-  const [GENDER, setGENDER] = useState('');
-    
-  useEffect(()=>{
-    setLoading(true)
-    fetch(staticUrl)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      setLoading(false)
-      setRickAndMortyChars(data.results);
-      setPages(data.info.pages)
-    })
-  },[])
-
-  useEffect(()=>{
-    setLoading(true)
-    fetch(currentPageUrl)
-    .then(response => response.json())
-    .then(data => {
-      setLoading(false)
-      setRickAndMortyChars(data.results);
-      setPages(data.info.pages)
-    })
-  },[currentPageUrl])
-
+  //react hooks
+  useEffect(() => dispatch(fetchCharacters()), []);
+  
   useEffect(() => {
-    setCurrentPageUrl(`${staticUrl}/?page=${page + 1}&species=${SPECIES || ''}&status=${STATUS || ''}&gender=${GENDER || ''}`)
-},[page, SPECIES, STATUS, GENDER])
+    dispatch(fetchCharacters(page,species,status,gender))
+  }, [page,species,status,gender]);
 
-  const speciesHandler = (e) => setSPECIES(e.target.value)
+  //query search handlers
+  const speciesHandler = (e) => dispatch(setSpecies(e.target.value));
 
-  const statusHandler = (e) => setSTATUS(e.target.value)
+  const statusHandler = (e) => dispatch(setStatus(e.target.value));
 
-  const genderHandler = (e) => setGENDER(e.target.value)
+  const genderHandler = (e) => dispatch(setGender(e.target.value));
+  
+  //pagination handler
+  const handlePageClick = e => dispatch(changePage(e.selected));
 
-  const handlePageClick = (e) => setPage(e.selected)
-
-  console.log(window.location.pathname); //yields: "/js" (where snippets run)
-  console.log(window.location.href); 
-
-
-  if(loading){
-    return (
-      <div className='progress'><CircularProgress /></div>
-    )
-  }
-
+  //conditional rendering
+  if(loading) return <div className='progress'><CircularProgress /></div>
+    
   return (
     <div className='wrapper'>
       <div className='char-list__filter'>
         <FilterPanel
-          SPECIES={SPECIES}
-          STATUS={STATUS}
-          GENDER={GENDER}
+          SPECIES={species}
+          STATUS={status}
+          GENDER={gender}
           genderHandler={genderHandler}        
           statusHandler={statusHandler}
           speciesHandler={speciesHandler} 
         />
       </div>
-      <CharacterList rickAndMortyChars={rickAndMortyChars}/>
+      <CharacterList rickAndMortyChars={characters}/>
       <ReactPaginate 
         previousLabel={"<"}
         nextLabel={">"}

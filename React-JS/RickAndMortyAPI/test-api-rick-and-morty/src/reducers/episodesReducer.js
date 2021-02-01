@@ -1,6 +1,6 @@
 import { 
     CHANGE_PAGE,
-    FETCH_EPISODES_BEGIN, 
+    FETCH_EPISODES_BEGGIN, 
     FETCH_EPISODES_FAILURE, 
     FETCH_EPISODES_SUCCESS, 
     SET_SEARCH, 
@@ -17,7 +17,7 @@ const initialState = {
 
 export const episodesReducer = (state = initialState, action) => {
     switch(action.type){
-        case FETCH_EPISODES_BEGIN:
+        case FETCH_EPISODES_BEGGIN:
             return {
                 ...state,
                 loading: true

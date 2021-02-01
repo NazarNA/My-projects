@@ -1,6 +1,6 @@
 import { 
     CHANGE_PAGE,
-    FETCH_LOCATIONS_BEGIN, 
+    FETCH_LOCATIONS_BEGGIN, 
     FETCH_LOCATIONS_FAILURE, 
     FETCH_LOCATIONS_SUCCESS, 
     SET_DIMENSION, 
@@ -21,7 +21,7 @@ const initialState = {
 
 export const locationsReducer = (state = initialState, action) => {
     switch(action.type){
-        case FETCH_LOCATIONS_BEGIN:
+        case FETCH_LOCATIONS_BEGGIN:
             return {...state, loading: true}
         case FETCH_LOCATIONS_SUCCESS:
             return {

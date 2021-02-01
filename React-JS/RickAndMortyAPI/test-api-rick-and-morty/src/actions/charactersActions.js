@@ -1,6 +1,6 @@
 import { 
     CHANGE_PAGE,
-    FETCH_CHARACTERS_BEGIN, 
+    FETCH_CHARACTERS_BEGGIN, 
     FETCH_CHARACTERS_FAILURE, 
     FETCH_CHARACTERS_SUCCESS, 
     SET_SPECIES, 
@@ -8,13 +8,13 @@ import {
     SET_GENDER 
 } from "../types/charactersTypes";
 
-export const fetchCharactersBegin = () => ({type: FETCH_CHARACTERS_BEGIN});
+export const fetchCharactersBeggin = () => ({type: FETCH_CHARACTERS_BEGGIN});
 export const fetchCharactersSuccess = (characters) => ({type: FETCH_CHARACTERS_SUCCESS, payload: characters});
 export const fetchCharactersFailure = (error) => ({type: FETCH_CHARACTERS_FAILURE, payload: { error }});
 
 export const fetchCharacters = (page, species = '', status = '', gender = '') => {
     return dispatch => {
-        dispatch(fetchCharactersBegin())
+        dispatch(fetchCharactersBeggin())
         fetch(`https://rickandmortyapi.com/api/character//?page=${page + 1}&species=${species}&status=${status}&gender=${gender}`)
         .then(response => response.json())
         .then(data => dispatch(fetchCharactersSuccess(data)))

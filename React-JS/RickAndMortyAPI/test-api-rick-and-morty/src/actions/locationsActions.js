@@ -1,5 +1,5 @@
 import { 
-    FETCH_LOCATIONS_BEGIN, 
+    FETCH_LOCATIONS_BEGGIN, 
     FETCH_LOCATIONS_FAILURE, 
     FETCH_LOCATIONS_SUCCESS, 
     SET_DIMENSION, 
@@ -8,13 +8,13 @@ import {
     CHANGE_PAGE
 } from "../types/locationsTypes";
 
-export const fetchLocationsBegin = () => ({type: FETCH_LOCATIONS_BEGIN})
+export const fetchLocationsBeggin = () => ({type: FETCH_LOCATIONS_BEGGIN})
 export const fetchLocationsSuccess = locations => ({type: FETCH_LOCATIONS_SUCCESS, payload: locations})
 export const fetchLocationsFailure = error => ({type: FETCH_LOCATIONS_FAILURE, payload: error})
 
 export const fetchLocations = (page, name = '', type = '', dimension = '') =>{
     return dispatch => {
-        dispatch(fetchLocationsBegin())
+        dispatch(fetchLocationsBeggin())
         fetch(`https://rickandmortyapi.com/api/location/?page=${page + 1}&name=${name && name.toLowerCase()}&type=${type && type.toLowerCase()}&dimension=${dimension && dimension.toLowerCase()}`)
             .then(response => response.json())
             .then(data => dispatch(fetchLocationsSuccess(data)))

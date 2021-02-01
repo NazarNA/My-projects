@@ -1,6 +1,6 @@
 import { 
     CHANGE_PAGE, 
-    FETCH_CHARACTERS_BEGIN, 
+    FETCH_CHARACTERS_BEGGIN, 
     FETCH_CHARACTERS_FAILURE, 
     FETCH_CHARACTERS_SUCCESS,
     SET_SPECIES, 
@@ -21,7 +21,7 @@ const initialState = {
 
 export const charactersReducer = (state = initialState, action) => {
     switch(action.type){
-        case FETCH_CHARACTERS_BEGIN:
+        case FETCH_CHARACTERS_BEGGIN:
             return {
                 ...state,
                 loading: true

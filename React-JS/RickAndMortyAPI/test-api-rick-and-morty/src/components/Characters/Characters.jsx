@@ -32,11 +32,9 @@ function Characters() {
   }, [page,species,status,gender]);
 
   //query search handlers
-  const speciesHandler = (e) => dispatch(setSpecies(e.target.value));
-
-  const statusHandler = (e) => dispatch(setStatus(e.target.value));
-
-  const genderHandler = (e) => dispatch(setGender(e.target.value));
+  const speciesHandler = e => dispatch(setSpecies(e.target.value));
+  const statusHandler = e => dispatch(setStatus(e.target.value));
+  const genderHandler = e => dispatch(setGender(e.target.value));
   
   //pagination handler
   const handlePageClick = e => dispatch(changePage(e.selected));

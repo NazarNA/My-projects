@@ -26,7 +26,6 @@ function App({ todos, addTodoHandler, removeTodoHandler, toggleTodoHandler }) {
     addTodoHandler(name)
     todoNameRef.current.value = null
   }
-
   
   return (
     <div className='wrapper'>
@@ -42,16 +41,13 @@ function App({ todos, addTodoHandler, removeTodoHandler, toggleTodoHandler }) {
       </div>
     </div>
   );
-
 }
 
 export default connect(
   state => ({ todos: state }),
   dispatch => ({
     addTodoHandler: title => dispatch(addTodoAction(title)),
-
     removeTodoHandler: id => dispatch(removeTodoAction(id)),
-
     toggleTodoHandler: id => dispatch(toggleTodoAction(id))
   })
 )(App);

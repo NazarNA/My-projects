@@ -51,24 +51,24 @@ const Locations = () => {
                 resetHandler={resetHandler}
             />
             <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Dimensions</th>
-                            <th>Type</th>
-                        </tr> 
-                    </thead>
-                    <tbody>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Dimensions</th>
+                        <th>Type</th>
+                    </tr> 
+                </thead>
+                <tbody>
                     {locations.map((loc, i) => {
                         return <LocationsTable
-                                key={i} 
-                                name={loc.name} 
-                                dimension={loc.dimension} 
-                                type={loc.type} 
-                            />
+                            key={i} 
+                            name={loc.name} 
+                            dimension={loc.dimension} 
+                            type={loc.type} 
+                        />
                     })}
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
                 <ReactPaginate 
                     previousLabel={"<"}
                     nextLabel={">"}

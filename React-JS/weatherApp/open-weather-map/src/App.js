@@ -1,15 +1,28 @@
 import React, { useEffect, useRef } from 'react'
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchWeather, setCity } from './actions/actions';
 
 
-const App = ({ loading, icon, temp, humidity, description, country, city, fetchWeather, setCity }) => {
+const App = () => {
 
   //value from inpput
   const input = useRef()
+
+  //redux hooks
+  const { loading, icon, temp, humidity, description, country, city } = useSelector( state => ({
+    loading: state.loading,
+    icon: state.icon,
+    temp: state.temp,
+    humidity: state.humidity,
+    description: state.description,
+    country: state.country,
+    city: state.city
+  }))
+
+  const dispatch = useDispatch()
   
   //react, render JSX based on state from store
-  useEffect(()=> fetchWeather(city),[city])
+  useEffect(()=> dispatch(fetchWeather(city)),[city])
 
   const formater = word => word.slice(0,1).toUpperCase() + word.slice(1);
 
@@ -53,24 +66,10 @@ const App = ({ loading, icon, temp, humidity, description, country, city, fetchW
       </ul>
       <div className="col-md-4 mt-1">
         <input type="text" ref={input} className="form-control col-md-4" placeholder="City..." />
-        <button onClick={()=> setCity(input.current.value)} className="btn btn-primary mt-1 col-md-12" type="button">Weather</button>
+        <button onClick={()=> dispatch(setCity(input.current.value))} className="btn btn-primary mt-1 col-md-12" type="button">Weather</button>
       </div>
     </div>
   )
 }
 
-export default connect(
-  state => ({
-    loading: state.loading,
-    icon: state.icon,
-    temp: state.temp,
-    humidity: state.humidity,
-    description: state.description,
-    country: state.country,
-    city: state.city
-  }),
-  dispatch => ({
-    fetchWeather: city => dispatch(fetchWeather(city)),
-    setCity: city => dispatch(setCity(city))
-  })
-)(App);
+export default App;

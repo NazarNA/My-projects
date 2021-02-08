@@ -16,7 +16,6 @@ const initialState = {
 }
 
 export const rootReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case CHANGE_PASSWORD:
             return {...state, password: action.payload}

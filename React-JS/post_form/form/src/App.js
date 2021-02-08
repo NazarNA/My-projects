@@ -38,6 +38,7 @@ function App() {
         </div>
         <input type="submit" className='btn btn-primary' />
       </form>
+      Open console, to see the result of Your registration!
     </div>
   );
 }
